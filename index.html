@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff8fb">
+    <meta name="description" content="A beautiful personal schedule, fitness, meals, school, habits and goals planner.">
+
+```
+<title>My Schedule</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- =========================================================
+     APP
+========================================================== -->
+
+<div id="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">♡</div>
+            <div class="brand-name" id="brandName">My Schedule</div>
+        </div>
+
+        <nav class="main-nav" aria-label="Main navigation">
+
+            <button class="nav-item active" data-page="home">
+                <span class="nav-symbol">⌂</span>
+                <span>Home</span>
+            </button>
+
+            <button class="nav-item" data-page="schedule">
+                <span class="nav-symbol">🕮</span>
+                <span>Schedule</span>
+            </button>
+
+            <button class="nav-item" data-page="meals">
+                <span class="nav-symbol">☕︎</span>
+                <span>Meals</span>
+            </button>
+
+            <button class="nav-item" data-page="workouts">
+                <span class="nav-symbol">𓀪</span>
+                <span>Workouts</span>
+            </button>
+
+            <button class="nav-item" data-page="school">
+                <span class="nav-symbol">✎</span>
+                <span>School</span>
+            </button>
+
+            <button class="nav-item" data-page="habits">
+                <span class="nav-symbol">಄</span>
+                <span>Habits</span>
+            </button>
+
+            <button class="nav-item" data-page="goals">
+                <span class="nav-symbol">✶</span>
+                <span>Goals</span>
+            </button>
+
+            <button class="nav-item" data-page="routines">
+                <span class="nav-symbol">↻</span>
+                <span>Routines</span>
+            </button>
+
+            <button class="nav-item" data-page="achievements">
+                <span class="nav-symbol">♛</span>
+                <span>Achievements</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item" data-page="progress">
+                <span class="nav-symbol">↗</span>
+                <span>Progress</span>
+            </button>
+
+            <button class="nav-item" data-page="settings">
+                <span class="nav-symbol">⚙︎</span>
+                <span>Settings</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MOBILE HEADER
+    ====================================================== -->
+
+    <header class="mobile-header">
+
+        <button class="icon-button" id="mobileMenuButton" aria-label="Open menu">
+            ☰
+        </button>
+
+        <div class="mobile-brand">
+            <span class="brand-mark">♡</span>
+            <span id="mobileBrandName">My Schedule</span>
+        </div>
+
+        <button class="icon-button" id="mobileProfileButton" aria-label="Profile">
+            ♡
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- ================================================
+             HOME
+        ================================================= -->
+
+        <section class="page active" id="page-home">
+
+            <div class="page-header home-header">
+
+                <div>
+                    <p class="eyebrow" id="homeDate">TODAY</p>
+                    <h1 id="greeting">Good morning, <span id="userNameDisplay">there</span>.</h1>
+                    <p class="page-subtitle">
+                        Your day, beautifully organized.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="quickAddButton">
+                    <span>＋</span>
+                    Quick Add
+                </button>
+
+            </div>
+
+
+            <!-- TODAY PROGRESS -->
+
+            <div class="dashboard-grid">
+
+                <article class="dashboard-card progress-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <span class="small-label">TODAY'S PROGRESS</span>
+                            <h2 id="todayProgressText">0%</h2>
+                        </div>
+
+                        <div class="progress-ring" id="progressRing">
+                            <span id="progressRingNumber">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-track large">
+                        <div class="progress-fill" id="todayProgressBar"></div>
+                    </div>
+
+                    <div class="progress-details">
+
+                        <div>
+                            <span class="detail-number" id="completedCount">0</span>
+                            <span class="detail-label">completed</span>
+                        </div>
+
+                        <div>
+                            <span class="detail-number" id="remainingCount">0</span>
+                            <span class="detail-label">remaining</span>
+                        </div>
+
+                        <div>
+                            <span class="detail-number" id="streakCount">0</span>
+                            <span class="detail-label">day streak</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- DAILY QUOTE -->
+
+                <article class="dashboard-card quote-card">
+
+                    <span class="quote-symbol">“</span>
+
+                    <p id="dailyQuote">
+                        Small steps create beautiful progress.
+                    </p>
+
+                    <span class="quote-bottom">♡</span>
+
+                </article>
+
+            </div>
+
+
+            <!-- TODAY'S PLAN -->
+
+            <section class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">YOUR DAY</span>
+                        <h2>Today's Plan</h2>
+                    </div>
+
+                    <button class="text-button" data-page="schedule">
+                        View Schedule →
+                    </button>
+
+                </div>
+
+                <div class="timeline" id="todayTimeline">
+                    <!-- Generated by JavaScript -->
+                </div>
+
+            </section>
+
+
+            <!-- QUICK OVERVIEW -->
+
+            <section class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">OVERVIEW</span>
+                        <h2>Your Spaces</h2>
+                    </div>
+
+                </div>
+
+                <div class="overview-grid">
+
+                    <button class="overview-card" data-page="workouts">
+                        <span class="overview-symbol">𓀪</span>
+                        <span class="overview-title">Workouts</span>
+                        <span class="overview-subtitle" id="homeWorkoutCount">0 workouts</span>
+                    </button>
+
+                    <button class="overview-card" data-page="meals">
+                        <span class="overview-symbol">☕︎</span>
+                        <span class="overview-title">Meals</span>
+                        <span class="overview-subtitle" id="homeMealCount">0 meals planned</span>
+                    </button>
+
+                    <button class="overview-card" data-page="habits">
+                        <span class="overview-symbol">಄</span>
+                        <span class="overview-title">Habits</span>
+                        <span class="overview-subtitle" id="homeHabitCount">0 habits</span>
+                    </button>
+
+                    <button class="overview-card" data-page="goals">
+                        <span class="overview-symbol">✶</span>
+                        <span class="overview-title">Goals</span>
+                        <span class="overview-subtitle" id="homeGoalCount">0 active goals</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- ================================================
+             SCHEDULE
+        ================================================= -->
+
+        <section class="page" id="page-schedule">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">🕮 SCHEDULE</span>
+                    <h1>Your Schedule</h1>
+                    <p class="page-subtitle">
+                        Plan your days, weeks and months in one place.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addScheduleButton">
+                    ＋ Add Event
+                </button>
+
+            </div>
+
+
+            <div class="view-switcher">
+
+                <button class="view-button active" data-calendar-view="day">
+                    Day
+                </button>
+
+                <button class="view-button" data-calendar-view="week">
+                    Week
+                </button>
+
+                <button class="view-button" data-calendar-view="month">
+                    Month
+                </button>
+
+            </div>
+
+
+            <div class="calendar-toolbar">
+
+                <button class="circle-button" id="previousDate">←</button>
+
+                <h2 id="calendarTitle">Today</h2>
+
+                <button class="circle-button" id="nextDate">→</button>
+
+            </div>
+
+
+            <div class="calendar-container" id="calendarContainer">
+                <!-- Calendar generated by JavaScript -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             MEALS
+        ================================================= -->
+
+        <section class="page" id="page-meals">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">☕︎ MEALS</span>
+                    <h1>Meal Planner</h1>
+                    <p class="page-subtitle">
+                        Plan exactly what you want to eat.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addMealButton">
+                    ＋ Add Meal
+                </button>
+
+            </div>
+
+
+            <div class="meal-summary">
+
+                <div class="summary-card">
+                    <span class="summary-symbol">☕︎</span>
+                    <span class="summary-number" id="mealCount">0</span>
+                    <span class="summary-label">meals planned</span>
+                </div>
+
+                <div class="summary-card">
+                    <span class="summary-symbol">□</span>
+                    <span class="summary-number" id="foodCount">0</span>
+                    <span class="summary-label">foods saved</span>
+                </div>
+
+                <div class="summary-card">
+                    <span class="summary-symbol">♡</span>
+                    <span class="summary-number" id="favoriteMealCount">0</span>
+                    <span class="summary-label">favorites</span>
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-label">THIS WEEK</span>
+                    <h2>Meal Plan</h2>
+                </div>
+
+            </div>
+
+            <div class="meal-grid" id="mealGrid">
+                <!-- Generated by JavaScript -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             WORKOUTS
+        ================================================= -->
+
+        <section class="page" id="page-workouts">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">𓀪 WORKOUTS</span>
+                    <h1>Workout Studio</h1>
+                    <p class="page-subtitle">
+                        Create, schedule and complete your own workouts.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="createWorkoutButton">
+                    ＋ Create Workout
+                </button>
+
+            </div>
+
+
+            <div class="workout-feature-card">
+
+                <div class="workout-feature-copy">
+
+                    <span class="feature-symbol">𓀪</span>
+
+                    <span class="small-label">WORKOUT BUILDER</span>
+
+                    <h2>Create a workout that is yours.</h2>
+
+                    <p>
+                        Choose exercises, sets, reps, time, equipment and
+                        exactly how you want your workout to work.
+                    </p>
+
+                    <button class="secondary-button" id="buildWorkoutButton">
+                        Build a Workout →
+                    </button>
+
+                </div>
+
+                <div class="workout-decoration">
+                    𓀪
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-label">YOUR LIBRARY</span>
+                    <h2>My Workouts</h2>
+                </div>
+
+            </div>
+
+            <div class="workout-grid" id="workoutGrid">
+                <!-- Generated by JavaScript -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             SCHOOL
+        ================================================= -->
+
+        <section class="page" id="page-school">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">✎ SCHOOL</span>
+                    <h1>School Planner</h1>
+                    <p class="page-subtitle">
+                        Keep classes, assignments and deadlines together.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addAssignmentButton">
+                    ＋ Add Assignment
+                </button>
+
+            </div>
+
+
+            <div class="school-grid">
+
+                <div class="content-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <span class="small-label">CLASSES</span>
+                            <h2>My Classes</h2>
+                        </div>
+
+                        <button class="small-add-button" id="addClassButton">
+                            ＋
+                        </button>
+                    </div>
+
+                    <div id="classList" class="simple-list"></div>
+
+                </div>
+
+
+                <div class="content-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span class="small-label">ASSIGNMENTS</span>
+                            <h2>Upcoming</h2>
+                        </div>
+
+                    </div>
+
+                    <div id="assignmentList" class="simple-list"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             HABITS
+        ================================================= -->
+
+        <section class="page" id="page-habits">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">಄ HABITS</span>
+                    <h1>My Habits</h1>
+                    <p class="page-subtitle">
+                        Build consistency one day at a time.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addHabitButton">
+                    ＋ Add Habit
+                </button>
+
+            </div>
+
+            <div class="habit-grid" id="habitGrid">
+                <!-- Generated -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             GOALS
+        ================================================= -->
+
+        <section class="page" id="page-goals">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">✶ GOALS</span>
+                    <h1>My Goals</h1>
+                    <p class="page-subtitle">
+                        Turn what matters to you into something measurable.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addGoalButton">
+                    ＋ Add Goal
+                </button>
+
+            </div>
+
+            <div class="goal-grid" id="goalGrid">
+                <!-- Generated -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             ROUTINES
+        ================================================= -->
+
+        <section class="page" id="page-routines">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">↻ ROUTINES</span>
+                    <h1>My Routines</h1>
+                    <p class="page-subtitle">
+                        Make the things you repeat feel effortless.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addRoutineButton">
+                    ＋ Create Routine
+                </button>
+
+            </div>
+
+            <div class="routine-grid" id="routineGrid">
+                <!-- Generated -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             ACHIEVEMENTS
+        ================================================= -->
+
+        <section class="page" id="page-achievements">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">♛ ACHIEVEMENTS</span>
+                    <h1>Your Achievements</h1>
+                    <p class="page-subtitle">
+                        Every completed step counts.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="achievement-summary">
+
+                <span id="achievementCount">0</span>
+                <span>of</span>
+                <span id="achievementTotal">0</span>
+                <span>unlocked</span>
+
+            </div>
+
+            <div class="achievement-grid" id="achievementGrid">
+                <!-- Generated -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             PROGRESS
+        ================================================= -->
+
+        <section class="page" id="page-progress">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">↗ PROGRESS</span>
+                    <h1>Your Progress</h1>
+                    <p class="page-subtitle">
+                        See how your consistency builds over time.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-symbol">𓀪</span>
+                    <strong id="progressWorkoutTotal">0</strong>
+                    <span>workouts completed</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-symbol">☕︎</span>
+                    <strong id="progressMealTotal">0</strong>
+                    <span>meals planned</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-symbol">಄</span>
+                    <strong id="progressHabitTotal">0</strong>
+                    <span>habit completions</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-symbol">↗</span>
+                    <strong id="progressTaskTotal">0</strong>
+                    <span>tasks completed</span>
+                </div>
+
+            </div>
+
+
+            <div class="content-card large-progress-card">
+
+                <div class="card-heading">
+                    <div>
+                        <span class="small-label">CONSISTENCY</span>
+                        <h2>Your Activity</h2>
+                    </div>
+                </div>
+
+                <div class="weekly-bars" id="weeklyBars"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================
+             SETTINGS
+        ================================================= -->
+
+        <section class="page" id="page-settings">
+
+            <div class="page-header">
+
+                <div>
+                    <span class="small-label">⚙︎ SETTINGS</span>
+                    <h1>Settings</h1>
+                    <p class="page-subtitle">
+                        Make the app feel like yours.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="settings-list">
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Your Name</strong>
+                        <span>Used throughout your dashboard.</span>
+                    </div>
+
+                    <input
+                        type="text"
+                        id="settingsName"
+                        class="setting-input"
+                        placeholder="Your name"
+                    >
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>App Name</strong>
+                        <span>Your personal name for the app.</span>
+                    </div>
+
+                    <input
+                        type="text"
+                        id="settingsAppName"
+                        class="setting-input"
+                        placeholder="My Schedule"
+                    >
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+                        <strong>Theme</strong>
+                        <span>Choose your visual mood.</span>
+                    </div>
+
+                    <select id="themeSelect" class="setting-input">
+                        <option value="blush">Soft Blush</option>
+                        <option value="rose">Rose</option>
+                        <option value="midnight">Midnight</option>
+                    </select>
+
+                </div>
+
+
+                <div class="setting-row danger-row">
+
+                    <div>
+                        <strong>Reset App</strong>
+                        <span>Erase all locally saved information.</span>
+                    </div>
+
+                    <button class="danger-button" id="resetAppButton">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE BOTTOM NAV
+    ====================================================== -->
+
+    <nav class="bottom-nav">
+
+        <button class="bottom-nav-item active" data-page="home">
+            <span>⌂</span>
+            <small>Home</small>
+        </button>
+
+        <button class="bottom-nav-item" data-page="schedule">
+            <span>🕮</span>
+            <small>Schedule</small>
+        </button>
+
+        <button class="bottom-nav-add" id="mobileQuickAdd">
+            ＋
+        </button>
+
+        <button class="bottom-nav-item" data-page="workouts">
+            <span>𓀪</span>
+            <small>Workouts</small>
+        </button>
+
+        <button class="bottom-nav-item" data-page="meals">
+            <span>☕︎</span>
+            <small>Meals</small>
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         QUICK ADD MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="quickAddModal">
+
+        <div class="modal">
+
+            <button class="modal-close" data-close-modal="quickAddModal">
+                ×
+            </button>
+
+            <span class="modal-symbol">＋</span>
+
+            <span class="small-label">QUICK ADD</span>
+
+            <h2>What would you like to add?</h2>
+
+            <div class="quick-add-grid">
+
+                <button data-quick-add="schedule">
+                    <span>🕮</span>
+                    Schedule Event
+                </button>
+
+                <button data-quick-add="workout">
+                    <span>𓀪</span>
+                    Workout
+                </button>
+
+                <button data-quick-add="meal">
+                    <span>☕︎</span>
+                    Meal
+                </button>
+
+                <button data-quick-add="habit">
+                    <span>಄</span>
+                    Habit
+                </button>
+
+                <button data-quick-add="goal">
+                    <span>✶</span>
+                    Goal
+                </button>
+
+                <button data-quick-add="assignment">
+                    <span>✎</span>
+                    Assignment
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         GENERIC FORM MODAL
+    ====================================================== -->
+
+    <div class="modal-overlay" id="formModal">
+
+        <div class="modal form-modal">
+
+            <button class="modal-close" id="formModalClose">
+                ×
+            </button>
+
+            <div id="formModalContent"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div class="toast" id="toast">
+        <span class="toast-symbol">✓</span>
+        <span id="toastMessage">Saved.</span>
+    </div>
+
+</div>
+
+
+<!-- USER DATA MUST LOAD BEFORE MAIN APP -->
+<script src="userData.js"></script>
+
+<!-- Main application logic will be expanded in the next file -->
+<script>
+    /*
+     * APP FOUNDATION
+     *
+     * This inline controller intentionally keeps the first build
+     * functional before the larger application logic is separated
+     * into additional JavaScript files.
+     */
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        if (typeof ScheduleApp === "undefined") {
+            console.error("ScheduleApp data layer could not be loaded.");
+            return;
+        }
+
+        ScheduleApp.init();
+
+    });
+
+</script>
+```
+
+</body>
+</html>
